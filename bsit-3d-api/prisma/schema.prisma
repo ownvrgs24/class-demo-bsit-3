@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model UserAccount {
+  recno      Int      @id @default(autoincrement())
+  account_id String   @unique @default(cuid())
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  profile    Profile?
+
+  @@map("user_account")
+}
+
+model Profile {
+  recno       Int         @id @default(autoincrement())
+  account_id  String      @unique
+  first_name  String
+  last_name   String
+  middle_name String?
+  suffix      String?
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  user        UserAccount @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
+
+  @@map("profile")
+}
