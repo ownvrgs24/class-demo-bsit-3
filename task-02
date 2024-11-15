@@ -1,0 +1,94 @@
+# Hands-On Activity Outline: Building a Simple Grading Program
+
+## Objective
+• To create a simple grading system where teachers can manage classes and grade student submissions
+• To implement basic CRUD operations for classroom management
+• To enable file submission functionality for students
+• To calculate student averages automatically
+• To provide a user-friendly interface for both teachers and students
+
+## 1. Setting Up the Basic Structure
+### Task 1: Project Setup
+• Create two main interfaces:
+  - Teacher Dashboard
+  - Student Portal
+
+### Task 2: Create User Authentication
+• Implement simple login system to differentiate between:
+  - Teacher access
+  - Student access
+
+## 2. Teacher Features
+### Task 3: Classroom Management
+• Create classroom functions:
+  - Create new classroom
+  - Add students to classroom
+  - View list of enrolled students
+  - Set up assignments
+
+### Task 4: Grading Implementation
+• Develop grading features:
+  - View submitted assignments
+  - Assign grades (0-100)
+  - Add comments to submissions
+  - Calculate class averages
+
+## 3. Student Features
+### Task 5: Student Submissions
+• Implement submission system:
+  - View assigned tasks
+  - Upload files (PDF, DOC, DOCX)
+  - Check submission status
+  - View grades and feedback
+
+## 4. File Management
+### Task 6: File Handling
+• Create file management system:
+  - Upload function
+  - Storage organization
+  - File type validation
+  - Size limitations
+
+## 5. Building the Interface
+### Task 7: Teacher Interface
+• Design teacher dashboard:
+  - Class list view
+  - Student management panel
+  - Grading interface
+  - Grade overview
+
+### Task 8: Student Interface
+• Create student portal:
+  - Assignment view
+  - Submission form
+  - Grade display
+  - Feedback section
+
+## 6. Testing
+### Task 9: System Testing
+• Test core functionalities:
+  - File uploads
+  - Grade calculations
+  - User access levels
+  - Data storage
+
+## Success Criteria
+1. Teachers can:
+   - Create and manage classrooms
+   - Add students to classes
+   - Grade submissions
+   - View class averages
+
+2. Students can:
+   - Submit assignments
+   - View their grades
+   - Check teacher feedback
+   - Track their progress
+
+## Submission Requirements
+1. Working grade submission system
+2. Functional file upload
+3. Accurate grade calculations
+4. Clear user interface
+5. Basic error handling
+6. Documentation of features
