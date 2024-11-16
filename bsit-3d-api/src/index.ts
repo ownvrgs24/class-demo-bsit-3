@@ -22,7 +22,6 @@ app.use(cors({ origin: true, credentials: true }));
 // Import the routes
 app.use(routeHandler);
 
-
 app.listen(PORT, () => {
-    console.log(`Server is up and running at: http://localhost:${PORT}/bsit3d-api`);
+    console.log(`🚀 Server is up and running at: http://localhost:${PORT}/bsit3d-api`);
 });
