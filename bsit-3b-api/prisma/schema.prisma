@@ -14,13 +14,14 @@ datasource db {
 }
 
 model UserAccount {
-  recno      Int      @id @default(autoincrement())
-  account_id String   @unique @default(cuid())
-  email      String   @unique
-  password   String
-  profile    Profile?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  recno       Int               @id @default(autoincrement())
+  account_id  String            @unique @default(cuid())
+  email       String            @unique
+  password    String
+  profile     Profile?
+  created_at  DateTime          @default(now())
+  updated_at  DateTime          @updatedAt
+  attachments UserAttachments[]
 
   @@map("user_account")
 }
@@ -37,4 +38,17 @@ model Profile {
   user        UserAccount @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
 
   @@map("profile")
+}
+
+model UserAttachments {
+  recno               Int         @id @default(autoincrement())
+  account_id          String
+  attachment_name     String
+  attachment_filepath String
+  attachment_type     String
+  created_at          DateTime    @default(now())
+  updated_at          DateTime    @updatedAt
+  user                UserAccount @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
+
+  @@map("user_attachments")
 }
