@@ -14,41 +14,28 @@ datasource db {
 }
 
 model UserAccount {
-  recno      Int         @id @default(autoincrement())
-  account_id String      @unique @default(cuid())
-  email      String      @unique
-  password   String
-  created_at DateTime    @default(now())
-  updated_at DateTime    @updatedAt
-  profile    Profile?
-  files      UserFiles[]
-
-  @@map("user_account")
-}
-
-model Profile {
-  recno       Int         @id @default(autoincrement())
-  account_id  String      @unique
+  recno       Int      @id @default(autoincrement())
+  account_id  String   @unique @default(uuid())
+  email       String   @unique
+  password    String
   first_name  String
   last_name   String
   middle_name String?
   suffix      String?
-  created_at  DateTime    @default(now())
-  updated_at  DateTime    @updatedAt
-  user        UserAccount @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  Task        Task[]
 
-  @@map("profile")
+  @@map("user_account")
 }
 
-model UserFiles {
+model Task {
   recno       Int          @id @default(autoincrement())
   account_id  String
-  file_name   String
-  file_path   String
-  file_type   String
+  task_name   String
   created_at  DateTime     @default(now())
   updated_at  DateTime     @updatedAt
   UserAccount UserAccount? @relation(fields: [account_id], references: [account_id])
 
-  @@map("user_files")
+  @@map("task")
 }

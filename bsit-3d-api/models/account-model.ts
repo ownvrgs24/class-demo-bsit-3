@@ -12,11 +12,7 @@ export default class AccountModel {
     }
 
     async getAllAccounts() {
-        return await prisma.userAccount.findMany({
-            include: {
-                profile: true
-            }
-        })
+        return await prisma.userAccount.findMany()
     }
 
     async deleteUserAccount(account_id: string) {
@@ -32,9 +28,7 @@ export default class AccountModel {
             where: {
                 email
             },
-            include: {
-                profile: true
-            }
+
         })
     }
 
@@ -42,32 +36,25 @@ export default class AccountModel {
         {
             email,
             password,
-            profile: {
-                suffix,
-                middle_name,
-                first_name,
-                last_name
-            }
+            suffix,
+            middle_name,
+            first_name,
+            last_name
         }: {
-            email: string, password: string, profile: {
-                suffix: string;
-                middle_name: string;
-                first_name: string,
-                last_name: string
-            }
+            email: string, password: string,
+            suffix: string;
+            middle_name: string;
+            first_name: string,
+            last_name: string
         }) {
         return await prisma.userAccount.create({
             data: {
                 email,
                 password,
-                profile: {
-                    create: {
-                        first_name,
-                        last_name,
-                        middle_name,
-                        suffix
-                    }
-                }
+                first_name,
+                last_name,
+                middle_name,
+                suffix
             }
         })
     }
