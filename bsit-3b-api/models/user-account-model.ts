@@ -1,55 +1,50 @@
-import { UserAccount } from "@prisma/client";
+import { User } from "@prisma/client";
 import prisma from "../config/prisma-config";
 
 export default class UserAccountModel {
 
-    async deleteUserAccount(account_id: string): Promise<UserAccount> {
-        return await prisma.userAccount.delete({
+
+    async deleteUserAccount(user_id: string): Promise<User> {
+        return await prisma.user.delete({
             where: {
-                account_id
+                user_id
             }
         })
     }
 
-    async updateUserAccount(account_id: string, data: {} | UserAccount): Promise<UserAccount> {
-        return await prisma.userAccount.update({
+    async updateUserAccount(user_id: string, data: {} | User): Promise<User> {
+        return await prisma.user.update({
             where: {
-                account_id
+                user_id
             },
             data
         })
     }
 
-    async getUserAccountByEmail(email: string): Promise<UserAccount | null> {
-        return await prisma.userAccount.findUnique({
+    async getUserAccountByEmail(email: string): Promise<User | null> {
+        return await prisma.user.findUnique({
             where: {
                 email
             }
         })
     }
 
-    async createUserAccount({ email, password,
-        profile: { suffix, middle_name, first_name, last_name }
-    }: {
-        email: string, password: string, profile: {
-            suffix: string;
-            middle_name: string;
-            first_name: string,
-            last_name: string
-        }
-    }): Promise<UserAccount> {
-        return await prisma.userAccount.create({
+    async createUserAccount({ email, password, suffix, middle_name, first_name, last_name }: {
+        email: string,
+        password: string,
+        suffix: string;
+        middle_name: string;
+        first_name: string,
+        last_name: string
+    }): Promise<User> {
+        return await prisma.user.create({
             data: {
                 email,
                 password,
-                profile: {
-                    create: {
-                        first_name,
-                        last_name,
-                        middle_name,
-                        suffix
-                    }
-                }
+                suffix,
+                middle_name,
+                first_name,
+                last_name
             }
         })
     }

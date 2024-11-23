@@ -1,0 +1,61 @@
+<div class="container">
+  <h3>BSIT 3B - TODO LIST</h3>
+
+  <section class="main">
+    <div class="actions">
+      <div>
+        <p style="font-weight: bold;">{{ userFullName }}</p>
+        <small style="color: grey;">Name</small>
+      </div>
+
+      <button
+        (click)="addTask()"
+        class="button"
+        title="Adding of Task button"
+        type="button"
+      >
+        Add Task
+      </button>
+
+      <button
+        (click)="logout()"
+        class="button"
+        title="Adding of Task button"
+        type="button"
+      >
+        Logout
+      </button>
+    </div>
+
+    <div class="tasks">
+      @if (tasks.length === 0) {
+      <div class="no-tasks">No tasks found</div>
+      } @else { @for (task of tasks; track task.id; let index = $index) {
+      <div class="task">
+        <div class="task__id">{{ task.id }}</div>
+
+        <div class="task__title">{{ task.title }}</div>
+
+        <div class="task__actions">
+          <button
+            (click)="editTask(index)"
+            class="button"
+            title="Edit Task button"
+            type="button"
+          >
+            Edit
+          </button>
+          <button
+            class="button"
+            (click)="deleteTask(index)"
+            title="Delete Task button"
+            type="button"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+      } }
+    </div>
+  </section>
+</div>

@@ -13,42 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model UserAccount {
-  recno       Int               @id @default(autoincrement())
-  account_id  String            @unique @default(cuid())
-  email       String            @unique
-  password    String
-  profile     Profile?
-  created_at  DateTime          @default(now())
-  updated_at  DateTime          @updatedAt
-  attachments UserAttachments[]
-
-  @@map("user_account")
-}
-
-model Profile {
-  recno       Int         @id @default(autoincrement())
-  account_id  String      @unique
+model User {
+  id          Int      @id @default(autoincrement())
+  user_id     String   @unique @default(uuid())
+  email       String   @unique
   first_name  String
   last_name   String
   middle_name String?
   suffix      String?
-  created_at  DateTime    @default(now())
-  updated_at  DateTime    @updatedAt
-  user        UserAccount @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
-
-  @@map("profile")
+  password    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  Task        Task[]
 }
 
-model UserAttachments {
-  recno               Int         @id @default(autoincrement())
-  account_id          String
-  attachment_name     String
-  attachment_filepath String
-  attachment_type     String
-  created_at          DateTime    @default(now())
-  updated_at          DateTime    @updatedAt
-  user                UserAccount @relation(fields: [account_id], references: [account_id], onDelete: Cascade)
-
-  @@map("user_attachments")
+model Task {
+  id         Int      @id @default(autoincrement())
+  user_id    String   @default(uuid())
+  title      String
+  content    String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user       User     @relation(fields: [user_id], references: [user_id])
 }

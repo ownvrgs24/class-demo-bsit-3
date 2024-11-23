@@ -1,0 +1,31 @@
+<div class="login-wrapper">
+  <form [formGroup]="loginForm" (ngSubmit)="handleLogin()" ngValidate>
+    <div class="form-group">
+      <h4>Login</h4>
+
+      <div class="form-input">
+        <label for="email">Email Address</label>
+        <input
+          formControlName="email"
+          type="text"
+          id="email"
+          class="form-control"
+          autocomplete="email"
+        />
+      </div>
+
+      <div class="form-input">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          class="form-control"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <button [disabled]="loginForm.invalid" type="submit">LOGIN NOW</button>
+    </div>
+  </form>
+</div>
