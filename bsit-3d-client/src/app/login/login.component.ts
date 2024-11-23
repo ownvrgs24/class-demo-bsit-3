@@ -32,6 +32,8 @@ export class LoginComponent {
         next: (response: any) => {
           window.alert(response.message);
           this.router.navigate(['/main']);
+
+          window.sessionStorage.setItem('user', JSON.stringify(response.user));
         },
         error: (error) => {
           window.alert(error.error.message);
